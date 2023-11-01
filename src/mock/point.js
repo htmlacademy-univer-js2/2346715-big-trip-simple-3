@@ -1,23 +1,22 @@
-import { getRandomInteger } from '../util.js';
+import { getRandomInteger } from '../utils.js';
 import { getOffers } from './offers.js';
 
 export const cities = [
-
   'London',
   'Dubai',
   'Kazan',
   'Los Angeles'
 ];
 
-const citiesGenerate = () => {
+const generateCities = () => {
   const randomIndex = getRandomInteger(0, cities.length - 1);
 
   return cities[randomIndex];
 };
 
-const textFish = () => {
+const generateDescription = () => {
 
-  const text = [
+  const descriptions = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     'Cras aliquet varius magna, non porta ligula feugiat eget.',
     'Fusce tristique felis at fermentum pharetra.',
@@ -27,12 +26,12 @@ const textFish = () => {
     'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.'
   ];
 
-  const randomIndex = getRandomInteger(0, text.length - 1);
+  const randomIndex = getRandomInteger(0, descriptions.length - 1);
 
-  return text[randomIndex];
+  return descriptions[randomIndex];
 };
 
-export const typePoint = [
+export const pointType = [
   'taxi',
   'bus',
   'train',
@@ -44,28 +43,28 @@ export const typePoint = [
   'restaurant'
 ];
 
-const pointGenerate = () => {
+const generatePointType = () => {
 
-  const randomIndex = getRandomInteger(0, typePoint.length - 1);
+  const randomIndex = getRandomInteger(0, pointType.length - 1);
 
-  return typePoint[randomIndex];
+  return pointType[randomIndex];
 };
-const photoGenerate = () => {
-  const photo = [];
+const generatePictures = () => {
+  const pictures = [];
   for (let i = 0; i < getRandomInteger(0, 10); i++) {
-    photo.push({
-      src: `http://picsum.photos/300/200?r=45${getRandomInteger(0, 9)}`,
-      description: textFish()
+    pictures.push({
+      src: `http://picsum.photos/300/200?r=0.076256300516331${getRandomInteger(0, 9)}`,
+      description: generateDescription()
     });
   }
-  return photo;
+  return pictures;
 };
 
 const generateDestination = (idValue) => ({
   id: idValue,
-  description: textFish(),
-  name: citiesGenerate(),
-  photo: photoGenerate()
+  description: generateDescription(),
+  name: generateCities(),
+  pictures: generatePictures()
 }
 );
 
@@ -81,7 +80,7 @@ export const generateDataPoint = () => ({
   destination: getRandomInteger(0, 9),
   id: '0',
   offers: [],
-  type: pointGenerate(),
+  type: generatePointType(),
 });
 
 export const generatePoint = () => {
